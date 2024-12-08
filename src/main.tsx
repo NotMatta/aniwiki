@@ -10,9 +10,9 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <BrowserRouter>
             <ApolloClientProvider>
-                <div className='w-full h-screen max-w-7xl mx-auto flex flex-col'>
+                <div className='w-full h-screen max-w-[1600px] mx-auto flex flex-col '>
                     <NavBar/>
-                    <div className='w-full max-h-full h-32 flex-grow'>
+                    <div className='w-full max-h-full h-32 flex-grow relative'>
                         <RoutesProvider/>
                     </div>
                 </div>

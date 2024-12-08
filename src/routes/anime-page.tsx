@@ -1,79 +1,78 @@
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import Characters from "../components/page-components/characters";
+import UserStats from "../components/page-components/user-stats";
 import { useParams } from "react-router";
+import ScoreBoard from "../components/page-components/score";
+import Recommendations from "../components/page-components/recommendations";
+import { useQuery } from "@apollo/client";
+import { AnimeType, GET_ANIME } from "../queries/anime-query";
+import { useEffect } from "react";
+import SpinPage from "../components/spin-page";
+import ErrorPage from "../components/error-page";
+
+const removeHTML = (text:string) => {
+  const div = document.createElement('div');
+  div.innerHTML = text;
+  return div.textContent || div.innerText || '';
+}
 
 const AnimePage = () => {
     const {id} = useParams()
-    const [toggleMenu,setToggle] = useState(false)
+    const {data,loading,error} : {data:{Media:AnimeType},error:Error,loading:boolean} = useQuery(GET_ANIME,{variables:{id}})
+    useEffect(() => {
+        if(data){
+            console.log(data)
+        }
+    }, [data])
+    if(loading) return <SpinPage/>
+    if(error) return <ErrorPage/>
     return (
-        <div className="[&>div]:border h-full flex flex-col-reverse md:flex-row">
-            <div className={`duration-300 ${toggleMenu? "w-[300px]" : "w-10"}`}>
-                <button onClick={() => setToggle(!toggleMenu)}><Menu/></button>
-                <div className="flex flex-col overflow-hidden w-full ml-10">
-                    <a>Description</a>
-                    <a>Stats</a>
-                    <a>Characters</a>
-                    <a>Reviews</a>
-                    <a>Recommendations</a>
-                </div>
-            </div>
-            <div className="flex-grow bg-white z-10 p-2 overflow-y-scroll max-h-full">
-                <p className="mb-2"><strong>Dandadan</strong><br/>
-                    This is a story about Momo, a high school girl who comes from a family of spirit mediums, and her classmate Okarun, an occult fanatic. After Momo rescues Okarun from being bullied, they begin talking. However, an argument ensues between them since Momo believes in ghosts but denies aliens exist, and Okarun believes in aliens but denies ghosts exist.
-                    To prove to each other what they believe in is real, Momo goes to an abandoned hospital where a UFO has been spotted and Okarun goes to a tunnel rumored to be haunted. To their surprise, they each encounter overwhelming paranormal activities that transcend comprehension. Amid these predicaments, Momo awakens her hidden power and Okarun gains the power of a curse to overcome these new dangers! Their fateful love begins as well!? 
+        <div className="[&>div]:md:border max-h-full md:h-full flex flex-col-reverse overflow-y-scroll md:overflow-auto md:flex-row">
+            <div className="flex-grow bg-white z-10 p-2 md:overflow-y-scroll max-h-full">
+                <p className="mb-2"><strong>{data.Media.title.romaji}</strong><br/>
+                    {removeHTML(data.Media.description)}
                 </p>
                 <strong>Characters</strong><br/>
-                <div className="flex flex-wrap gap-2 mb-2">
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
-                    <div className="flex gap-2 w-[300px] border">
-                        <img src="https://s4.anilist.co/file/anilistcdn/character/large/b222593-qBqUvpodooAI.png"
-                            alt="character" className="w-24 h-32 object-cover"/>
-                        <p>Character Name</p>
-                    </div>
+                <div className="flex flex-wrap gap-2 mb-2 justify-between">
+                    {data.Media.characters.nodes.slice(0,8).map((character:{name:{full:string},image:{large:string}}) => (
+                        <Characters name={character.name.full} image={character.image.large} key={character.name.full}/>
+                    ))}
                 </div>
                 <strong className="mb2">Status</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <strong className="mb2">Threads</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <UserStats 
+                    current={data.Media.stats.statusDistribution[0].amount}
+                    planning={data.Media.stats.statusDistribution[1].amount}
+                    completed={data.Media.stats.statusDistribution[2].amount}
+                    dropped={data.Media.stats.statusDistribution[3].amount}
+                    paused={data.Media.stats.statusDistribution[4].amount}/>
+                <strong className="mb2">Score</strong>
+                <ScoreBoard averageScore={data.Media.averageScore} meanScore={data.Media.meanScore} favourites={data.Media.favourites} popularity={data.Media.popularity} />
+                <strong className="mb2">Recomendation</strong>
+                {data.Media.recommendations.nodes.length > 0 &&
+                    <Recommendations animes={data.Media.recommendations.nodes.map((node:{mediaRecommendation:{id:number,title:{romaji:string},coverImage:{large:string}}}) => (
+                        {name:node.mediaRecommendation.title.romaji,image:node.mediaRecommendation.coverImage.large,id:node.mediaRecommendation.id}
+                    ))}/>}
             </div>
-            <div className="w-full h-[700px] md:h-full md:min-w-[300px]  relative bg-black text-white [&_p]:px-2 flex flex-col">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171018-2ldCj6QywuOa.jpg"
-                    alt="anime cover" className="w-full h-[450px] object-cover mb-2"/>
-                <div className="bg-gradient-to-b from-transparent to-black w-full h-[450px] absolute top-0 flex flex-col justify-end">
-                    <p className="text-2xl font-bold">Dandadan {id}</p>
+            <div className="md:min-w-[350px] md:max-w-[350px] md:overflow-y-scroll pb-2 relative md:bg-black md:text-white [&_p]:px-2 flex flex-col">
+                <img src={data.Media.bannerImage}
+                    alt="anime cover" className="w-full min-h-[450px] object-cover"/>
+                <div className="bg-gradient-to-b from-transparent to-white md:to-black w-full h-[450px] absolute top-0 flex items-end">
+                    <img src={data.Media.coverImage.large}
+                        alt="anime cover" className="w-[180px] h-[300px] object-cover p-2 rounded-xl"/>
+                    <p className="text-2xl font-bold">{data.Media.title.romaji}</p>
                 </div>
-                <p>Format: TV</p>
-                <p>Status: Realising</p>
-                <p>Rating: 8.5</p>
-                <p>Tags: Action, Adventure, Comedy</p>
-                <p>Date: 2021-2022</p>
+                <br/>
+                <p>Format: {data.Media.format}</p>
+                <p>Status: {data.Media.status}</p>
+                <p>Start Date: {data.Media.startDate.year}</p>
+                <p>End Date: {data.Media.endDate.year}</p>
+                <div className="px-2 [&_p]:bg-[#202020] [&_p]:p-1 [&_p]:rounded-lg [&_p]:text-gray-300">
+                    <strong>Tags</strong>
+                    <div className="flex flex-wrap gap-2">
+                        {data.Media.tags.map((tag:{name:string}) => (
+                            <p key={tag.name}>{tag.name}</p>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

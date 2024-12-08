@@ -67,102 +67,116 @@ const GET_TOP_ANIME = gql`
 const GET_ANIME = gql`
 query ($id: Int) {
     Media(id: $id) {
-        id
         title {
             romaji
         }
-        description
+        format
         status
+        startDate {
+            year
+        }
+        endDate {
+            year
+        }
+        tags {
+            name
+        }
+        bannerImage
+        coverImage {
+            large
+        }
+        description
+        characters {
+            nodes {
+
+                name {
+                    full
+                }
+                image {
+                    large
+                }
+            }
+        }
         averageScore
+        meanScore
         popularity
-        relations {
-            edges {
-                node {
+        favourites
+        stats {
+            statusDistribution {
+                amount
+                status
+            }
+        }
+        recommendations {
+            nodes {
+                mediaRecommendation {
                     id
                     title {
                         romaji
                     }
-                    type
-                }
-            }
-        }
-        characters {
-            edges {
-                node {
-                    id
-                    name {
-                        full
-                    }
-                    image {
-                        large
-                    }
-                }
-                voiceActors {
-                    name {
-                        full
-                    }
-                    image {
+                    coverImage {
                         large
                     }
                 }
             }
-        }
-        recommendations {
-            edges {
-                node {
-                    id
-                    media {
-                        title {
-                            romaji
-                        }
-                        coverImage {
-                            large
-
-                        }
-                    }
-                }
-            }
-        }
-        trending
-        source
-        tags {
-            name
-        }
-        format
-        episodes
-        duration
-        startDate {
-            year
-            month
-            day
-        }
-        endDate {
-            year
-            month
-            day
         }
     }
 }
 `;
 
-export type anime = {
-    id:string,
-    title:{romaji:string},
-    description:string,
-    status:string,
-    averageScore:number,
-    popularity:number,
-    relations:{edges:{node:{id:string,title:{romaji:string},type:string}}[]},
-    characters:{edges:{node:{id:string,name:{full:string},image:{large:string}},voiceActors:{name:{full:string},image:{large:string}}}},
-    recommendations:{edges:{node:{id:string,media:{title:{romaji:string},coverImage:{large:string}}}}},
-    trending:number,
-    source:string,
-    tags:{name:string}[],
-    format:string,
-    episodes:number,
-    duration:string,
-    startDate:{year:number,month:number,day:number},
-    endDate:{year:number,month:number,day:number}
+export interface AnimeType {
+  title: {
+    romaji: string;
+  };
+  format: string;
+  status: string;
+  startDate: {
+    year: number;
+  };
+  endDate: {
+    year: number;
+  };
+  tags: {
+    name: string;
+  }[];
+  bannerImage: string;
+  coverImage: {
+    large: string;
+  };
+  description: string;
+  characters: {
+    nodes: {
+      name: {
+        full: string;
+      };
+      image: {
+        large: string;
+      };
+    }[];
+  };
+  averageScore: number;
+  meanScore: number;
+  popularity: number;
+  favourites: number;
+  stats: {
+    statusDistribution: {
+      amount: number;
+      status: string;
+    }[];
+  };
+  recommendations: {
+    nodes: {
+      mediaRecommendation: {
+        id:number,
+        title: {
+          romaji: string;
+        };
+        coverImage: {
+          large: string;
+        };
+      };
+    }[];
+  };
 }
 
 export {

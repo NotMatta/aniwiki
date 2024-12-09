@@ -1,9 +1,12 @@
-const Characters = ({name,image}:{name:string,image:string}) => {
+const Characters = ({name,image,role}:{role:string,name:string,image:string}) => {
     return(
         <div className="flex gap-2 lg:w-[300px] border w-full flex-grow">
             <img src={image}
                 alt={name} className="w-24 h-32 object-cover"/>
-            <p>{name}</p>
+            <div className="flex flex-col justify-between flex-grow p-2">
+                <p>{name}</p>
+                <p className="w-full text-right">{role.toLowerCase()}</p>
+            </div>
         </div>
     )
 }

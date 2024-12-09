@@ -1,10 +1,11 @@
 import { gql } from "@apollo/client";
 
-const GET_TRENDING_ANIME = gql`
-    query GetTrendingAnime {
+const GET_TRENDING_MEDIA = gql`
+    query GetMedia($type: MediaType) {
         Page (perPage: 6) {
-            media(type: ANIME, sort: TRENDING_DESC) {
+            media(type: $type, sort: TRENDING_DESC) {
                 id
+                type
                 title {
                     romaji
                 }
@@ -16,11 +17,12 @@ const GET_TRENDING_ANIME = gql`
     }
 `;
 
-const GET_POPULAR_ANIME = gql`
-    query GetPopularAnime {
+const GET_POPULAR_MEDIA = gql`
+    query GetMedia($type: MediaType) {
         Page (perPage: 6) {
-            media(type: ANIME, sort: POPULARITY_DESC) {
+            media(type: $type, sort: POPULARITY_DESC) {
                 id
+                type
                 title {
                     romaji
                 }
@@ -32,11 +34,12 @@ const GET_POPULAR_ANIME = gql`
     }
 `;
 
-const GET_UPCOMING_ANIME = gql`
-    query GetUpcomingAnime {
+const GET_UPCOMING_MEDIA = gql`
+    query GetMedia($type: MediaType) {
         Page (perPage: 6) {
-            media(type: ANIME, sort: START_DATE) {
+            media(type: $type, sort: START_DATE) {
                 id
+                type
                 title {
                     romaji
                 }
@@ -48,11 +51,12 @@ const GET_UPCOMING_ANIME = gql`
     }
 `;
 
-const GET_TOP_ANIME = gql`
-    query GetTopAnime {
+const GET_TOP_MEDIA = gql`
+    query GetMedia($type: MediaType) {
         Page (perPage: 6) {
-            media(type: ANIME, sort: SCORE_DESC) {
+            media(type: $type, sort: SCORE_DESC) {
                 id
+                type
                 title {
                     romaji
                 }
@@ -64,9 +68,31 @@ const GET_TOP_ANIME = gql`
     }
 `;
 
-const GET_ANIME = gql`
-query ($id: Int) {
-    Media(id: $id) {
+const SEARCH_MEDIA = gql`
+    query ($perPage: Int, $page: Int, $search: String, $sort: [MediaSort], $type: MediaType) {
+      Page(perPage: $perPage,page: $page){
+        pageInfo {
+          currentPage
+          total
+          perPage
+        }
+        media(search: $search,sort: $sort,type: $type){
+          id
+          type
+          title {
+            romaji
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+    }
+`;
+
+const GET_MEDIA = gql`
+query ($id: Int,$format: MediaType) {
+    Media(id: $id, type: $format) {
         title {
             romaji
         }
@@ -86,14 +112,28 @@ query ($id: Int) {
             large
         }
         description
-        characters {
+        relations {
             nodes {
-
-                name {
-                    full
+                id
+                type
+                title {
+                    romaji
                 }
-                image {
+                coverImage {
                     large
+                }
+            }
+        }
+        characters(sort:ROLE){
+            edges {
+                role
+                node {
+                    name {
+                        full
+                    }
+                    image {
+                        large
+                    }
                 }
             }
         }
@@ -111,6 +151,7 @@ query ($id: Int) {
             nodes {
                 mediaRecommendation {
                     id
+                    type
                     title {
                         romaji
                     }
@@ -124,7 +165,7 @@ query ($id: Int) {
 }
 `;
 
-export interface AnimeType {
+export interface MediaType {
   title: {
     romaji: string;
   };
@@ -143,14 +184,29 @@ export interface AnimeType {
   coverImage: {
     large: string;
   };
+  relations: {
+    nodes: {
+      id: number;
+      type: string;
+      title: {
+        romaji: string;
+      };
+      coverImage: {
+        large: string;
+      };
+    }[];
+  };
   description: string;
   characters: {
-    nodes: {
-      name: {
-        full: string;
-      };
-      image: {
-        large: string;
+    edges: {
+      role: string;
+      node: {
+        name: {
+          full: string;
+        };
+        image: {
+          large: string;
+        };
       };
     }[];
   };
@@ -168,6 +224,7 @@ export interface AnimeType {
     nodes: {
       mediaRecommendation: {
         id:number,
+        type:string,
         title: {
           romaji: string;
         };
@@ -180,9 +237,10 @@ export interface AnimeType {
 }
 
 export {
-    GET_TRENDING_ANIME,
-    GET_POPULAR_ANIME,
-    GET_UPCOMING_ANIME,
-    GET_TOP_ANIME,
-    GET_ANIME
+    GET_TRENDING_MEDIA,
+    GET_POPULAR_MEDIA,
+    GET_UPCOMING_MEDIA,
+    GET_TOP_MEDIA,
+    GET_MEDIA,
+    SEARCH_MEDIA
 }

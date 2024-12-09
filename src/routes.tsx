@@ -1,14 +1,13 @@
 import {Routes, Route } from "react-router";
 import Home from "./routes/home";
-import Search from "./routes/search";
-import AnimePage from "./routes/anime-page";
-import MangaPage from "./routes/manga";
+import MediaBrowse from "./routes/media-browse";
+import MediaPage from "./routes/media-page";
 
 const routes = [
     {path: "/", element: <Home />},
-    {path: "anime/:id", element: <AnimePage />},
-    {path: "manga/:id", element: <MangaPage />},
-    {path: "/search", element: <Search />},
+    {path: "/anime/:id", element: <MediaPage format="ANIME"/>},
+    {path: "/manga/:id", element: <MediaPage format="MANGA"/>},
+    {path: "/browse/:type", element: <MediaBrowse />},
 ]
 
 export const RoutesProvider = () => {

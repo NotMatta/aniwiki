@@ -75,8 +75,9 @@ const SEARCH_MEDIA = gql`
           currentPage
           total
           perPage
+          lastPage
         }
-        media(search: $search,sort: $sort,type: $type){
+        media(search: $search,sort: $sort,type: $type, isAdult: false){
           id
           type
           title {

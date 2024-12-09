@@ -32,9 +32,9 @@ const MediaPage = ({format}:{format:string}) => {
                     {removeHTML(data.Media.description)}
                 </p>
                 <strong>Relations</strong><br/>
-                {data.Media.relations.nodes.length > 0  &&<Recommendations media={data.Media.relations.nodes.map((node) => (
-                    {id:node.id,name:node.title.romaji,image:node.coverImage.large,type:node.type}
-                ))}/>}
+                {data.Media.relations?.nodes?.length > 0  &&<Recommendations media={data.Media.relations.nodes.map((node) => {
+                    if(node) return {id:node.id,name:node.title.romaji,image:node.coverImage.large,type:node.type}
+                }).filter(item => item !== undefined)}/>}
                 <strong>Characters</strong><br/>
                 <div className="flex flex-wrap gap-2 mb-2 justify-between">
                     {data.Media.characters.edges.map((edge) => (
@@ -52,9 +52,9 @@ const MediaPage = ({format}:{format:string}) => {
                 <ScoreBoard averageScore={data.Media.averageScore} meanScore={data.Media.meanScore} favourites={data.Media.favourites} popularity={data.Media.popularity} />
                 <strong className="mb2">Recomendation</strong>
                 {data.Media.recommendations.nodes.length > 0 &&
-                    <Recommendations media={data.Media.recommendations.nodes.map((node) => (
-                        {name:node.mediaRecommendation.title.romaji,image:node.mediaRecommendation.coverImage.large,id:node.mediaRecommendation.id,type:node.mediaRecommendation.type}
-                    ))}/>}
+                    <Recommendations media={data.Media.recommendations.nodes.map((node) => {
+                        if(node.mediaRecommendation) return {name:node.mediaRecommendation.title.romaji,image:node.mediaRecommendation.coverImage.large,id:node.mediaRecommendation.id,type:node.mediaRecommendation.type}
+                        }).filter(item => item !== undefined)}/>}
             </div>
             <div className="md:min-w-[350px] md:max-w-[350px] md:overflow-y-scroll pb-2 relative md:bg-black md:text-white [&_p]:px-2 flex flex-col">
                 <img src={data.Media.bannerImage}

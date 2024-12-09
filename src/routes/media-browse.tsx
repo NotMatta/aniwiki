@@ -1,10 +1,8 @@
 import { useState } from "react";
 import AnimeQuery from "../components/anime-query";
-import { useParams } from "react-router";
 
-const MediaBrowse = () => {
-    const initType = useParams().type?.toUpperCase();
-    const [type,setType] = useState<string>(initType || "ANIME");
+const MediaBrowse = ({initType}:{initType:string}) => {
+    const [type,setType] = useState<string>(initType);
     return(
         <div className="p-4">
             <div className="flex items-center gap-2 text-3xl">

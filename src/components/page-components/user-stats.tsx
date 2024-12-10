@@ -16,7 +16,7 @@ const UserStats  = ({current,planning,completed,dropped,paused,}:UserStatsProps)
 
   return (
     <div className="bg-gray-100 p-4 rounded-lg font-semibold text-gray-400">
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-center flex-wrap md:justify-between gap-2 mb-4">
         <div className="flex items-center flex-col">
           <div className="bg-green-500 text-white px-4 py-2 rounded-md">
             Current
@@ -41,7 +41,7 @@ const UserStats  = ({current,planning,completed,dropped,paused,}:UserStatsProps)
           </div>
           <p><span className="text-pink-500">{dropped}</span> Users</p>
         </div>
-        <div className="hidden md:flex items-center flex-col">
+        <div className="flex items-center flex-col">
           <div className="bg-red-500 text-white px-4 py-2 rounded-md">
             Paused
           </div>

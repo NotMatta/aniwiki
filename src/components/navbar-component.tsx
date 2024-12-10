@@ -3,7 +3,7 @@ import { Link } from "react-router"
 
 const NavBar = () => {
     return(
-        <div className="w-full flex justify-between min-h-14 items-center px-2">
+        <div className="w-full flex justify-between min-h-14 items-center px-6">
             <p className="w-1/2">Logo</p>
             <div className="flex gap-4 [&_p]:hidden md:[&_p]:block [&>a]:gap-2 [&>a]:flex">
                 <Link to="/search"><Search/><p>Search</p></Link>

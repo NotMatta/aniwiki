@@ -110,7 +110,7 @@ query ($id: Int,$format: MediaType) {
         }
         bannerImage
         coverImage {
-            large
+            extraLarge
         }
         description
         relations {
@@ -183,7 +183,7 @@ export interface MediaType {
   }[];
   bannerImage: string;
   coverImage: {
-    large: string;
+    extraLarge: string;
   };
   relations: {
     nodes: {

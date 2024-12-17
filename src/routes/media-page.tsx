@@ -9,12 +9,7 @@ import { useEffect } from "react";
 import SpinPage from "../components/spin-page";
 import ErrorPage from "../components/error-page";
 import Side from "../components/page-components/side";
-
-const removeHTML = (text:string) => {
-  const div = document.createElement('div');
-  div.innerHTML = text;
-  return div.textContent || div.innerText || '';
-}
+import Description from "../components/page-components/description";
 
 const MediaPage = ({format}:{format:string}) => {
     const {id} = useParams()
@@ -27,30 +22,18 @@ const MediaPage = ({format}:{format:string}) => {
     if(loading) return <SpinPage/>
     if(error || !data) return <ErrorPage/>
     return (
-        <div className="border-t max-h-full lg:h-full flex flex-col-reverse overflow-y-scroll lg:overflow-auto lg:flex-row">
-            <div className="flex-grow shrink-0 lg:shrink bg-white z-10 relative pt-0 lg:overflow-y-scroll lg:max-h-full [&_strong]:text-3xl [&>div]:p-6 border-r">
+        <div className="max-h-full lg:h-full flex flex-col-reverse overflow-y-scroll lg:overflow-auto lg:flex-row gap-1">
+            <div className="flex-grow shrink-0 lg:shrink z-10 relative pt-0 lg:overflow-y-scroll lg:max-h-full [&_strong]:text-3xl [&>div]:p-6">
                 <img className="hidden lg:block w-full h-[300px] object-cover" src={data.Media.bannerImage || "https://i.pinimg.com/originals/88/20/ff/8820ff7553baaf595822b58c5590b604.jpg"} 
                     alt={data.Media.title.romaji}/>
-                <div className="space-y-2">
-                    <strong>Description</strong>
-                    <p>
-                        {removeHTML(data.Media.description)}
-                    </p>
-                </div>
+                <Description description={data.Media.description}/>
                 <div className="space-y-2">
                     <strong>Relations</strong>
                     {data.Media.relations?.nodes?.length > 0  &&<Recommendations media={data.Media.relations.nodes.map((node) => {
                         if(node) return {id:node.id,name:node.title.romaji,image:node.coverImage.large,type:node.type}
                     }).filter(item => item !== undefined)}/>}
                 </div>
-                <div className="space-y-2">
-                    <strong>Characters</strong>
-                    <div className="flex flex-wrap gap-2 mb-2 justify-between">
-                        {data.Media.characters.edges.map((edge) => (
-                            <Characters role={edge.role} name={edge.node.name.full} image={edge.node.image.large} key={edge.node.name.full}/>
-                        ))}
-                    </div>
-                </div>
+                <Characters characters={data.Media.characters.edges}/>
                 <div className="space-y-2">
                     <strong>Status</strong>
                     <UserStats 

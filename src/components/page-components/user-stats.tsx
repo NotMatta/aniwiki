@@ -15,7 +15,8 @@ const UserStats  = ({current,planning,completed,dropped,paused,}:UserStatsProps)
   const pausedPercentage = ((paused / totalUsers) * 100).toFixed(2);
 
   return (
-    <div className="bg-gray-100 p-4 rounded-lg font-semibold text-gray-400">
+    <div className="relative p-4 rounded-lg font-semibold text-gray-400">
+        <div className="-z-10 absolute top-0 left-0 w-full h-full bg-black opacity-50 rounded-lg"></div>
       <div className="flex justify-center flex-wrap md:justify-between gap-2 mb-4">
         <div className="flex items-center flex-col">
           <div className="bg-green-500 text-white px-4 py-2 rounded-md">

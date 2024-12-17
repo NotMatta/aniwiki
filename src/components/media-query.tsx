@@ -13,11 +13,11 @@ type media = {
 const DisplayMedia = ({media}:{media:media[]}) => {
     const navigate = useNavigate()
     return(
-        <div className="flex w-full justify-around md:max-h-[350px] md:overflow-y-hidden flex-wrap gap-2">
+        <div className="flex w-full max-w-full md:max-h-[450px] md:overflow-y-hidden gap-2 overflow-y-scroll">
             {media.map((page) => (
-                <div onClick={() => navigate(`/${page.type.toLowerCase()}/${page.id}`)} key={page.id} className="w-[200px] flex-shrink-0 p-2 hover:bg-[#DDDDDD] rounded">
-                    <img src={page.coverImage.extraLarge} alt={page.title.romaji} className="w-[200px] h-[300px] object-cover"/>
-                    <h3 className="h-12">{page.title.romaji}</h3>
+                <div onClick={() => navigate(`/${page.type.toLowerCase()}/${page.id}`)} key={page.id} className="w-[180px] md:w-[250px] flex-shrink-0 p-2 rounded hover:w-[260px] duration-300">
+                    <img src={page.coverImage.extraLarge} alt={page.title.romaji} className="w-full min-h-[250px] md:min-h-[350px] md:max-h-[350px] max-h-[250px] object-cover"/>
+                    <h3 className="line-clamp-2">{page.title.romaji}</h3>
                 </div>
                 ))
             }
@@ -76,7 +76,7 @@ const TopMedia = ({type}:{type:string}) => {
 
 const MediaQuery = ({type}:{type:string}) => {
     return(
-        <div className="[&_img]:rounded-md">
+        <div className="[&_img]:rounded-md grow min-h-0 max-h-full overflow-y-scroll">
             <h1 className="text-xl font-bold">Trending {type}</h1>
             <TrendingMedia type={type.toUpperCase()}/>
             <h1 className="text-xl font-bold">Popular {type}</h1>

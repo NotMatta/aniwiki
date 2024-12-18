@@ -8,8 +8,11 @@ const client = new ApolloClient({
 
 });
 
+console.log(!!client)
+
 const ApolloClientProvider = ({children}:{children:React.ReactNode} ) => {
-      return <ApolloProvider client={client}>{children}</ApolloProvider>;
+    return client ? <ApolloProvider client={client}>{children}</ApolloProvider>:
+        <div className='text-xl'>Server is offline or you are timed out (bro chill)</div>
 }
 
 export default ApolloClientProvider

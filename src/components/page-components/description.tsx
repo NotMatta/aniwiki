@@ -9,7 +9,7 @@ const removeHTML = (text:string) => {
 const Description = ({description}:{description:string}) => {
     const [showMore,setShowMore] = useState<boolean>(false)
     return(
-        <div className="space-y-2">
+        <div className="space-y-2 [&>p]:text-sm">
             <strong>Description</strong>
             <p className={`md:hidden ${showMore ? "" : "overflow-hidden text-ellipsis line-clamp-3"}`}>
                 {removeHTML(description)}

@@ -22,8 +22,9 @@ const MediaPage = ({format}:{format:string}) => {
     if(loading) return <SpinPage/>
     if(error || !data) return <ErrorPage/>
     return (
-        <div className="max-h-full lg:h-full flex flex-col-reverse overflow-y-scroll lg:overflow-auto lg:flex-row gap-1">
-            <div className="flex-grow shrink-0 lg:shrink z-10 relative pt-0 lg:overflow-y-scroll lg:max-h-full [&_strong]:text-3xl [&>div]:p-6">
+        <div className="max-h-full lg:h-full flex flex-col overflow-y-scroll lg:overflow-auto lg:flex-row-reverse gap-1">
+            <Side data={data}/>
+            <div className="flex-grow shrink-0 lg:shrink z-10 relative pt-0 lg:overflow-y-scroll lg:max-h-full [&_strong]:text-2xl md:[&_strong]:text-3xl [&>div]:p-2 lg:[&>div]:p-6">
                 <img className="hidden lg:block w-full h-[300px] object-cover" src={data.Media.bannerImage || "https://i.pinimg.com/originals/88/20/ff/8820ff7553baaf595822b58c5590b604.jpg"} 
                     alt={data.Media.title.romaji}/>
                 <Description description={data.Media.description}/>
@@ -55,7 +56,6 @@ const MediaPage = ({format}:{format:string}) => {
                             }).filter(item => item !== undefined)}/>}
                 </div>
             </div>
-            <Side data={data}/>
         </div>
     );
 }

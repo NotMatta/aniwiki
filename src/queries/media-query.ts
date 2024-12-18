@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const GET_TRENDING_MEDIA = gql`
     query GetMedia($type: MediaType) {
-        Page (perPage: 6) {
+        Page (perPage: 16) {
             media(type: $type, sort: TRENDING_DESC) {
                 id
                 type
@@ -19,7 +19,7 @@ const GET_TRENDING_MEDIA = gql`
 
 const GET_POPULAR_MEDIA = gql`
     query GetMedia($type: MediaType) {
-        Page (perPage: 6) {
+        Page (perPage: 16) {
             media(type: $type, sort: POPULARITY_DESC) {
                 id
                 type
@@ -36,7 +36,7 @@ const GET_POPULAR_MEDIA = gql`
 
 const GET_UPCOMING_MEDIA = gql`
     query GetMedia($type: MediaType) {
-        Page (perPage: 6) {
+        Page (perPage: 16) {
             media(type: $type, sort: START_DATE) {
                 id
                 type
@@ -53,7 +53,7 @@ const GET_UPCOMING_MEDIA = gql`
 
 const GET_TOP_MEDIA = gql`
     query GetMedia($type: MediaType) {
-        Page (perPage: 6) {
+        Page (perPage: 16) {
             media(type: $type, sort: SCORE_DESC) {
                 id
                 type

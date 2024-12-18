@@ -18,7 +18,7 @@ const Characters = ({characters}:{characters:CharactersProps[]}) => {
             <div><strong>Characters</strong><button onClick={() => setShowMore(!showMore)}>{showMore ? <ChevronUp/> : <ChevronDown/>}</button></div>
             <div className="flex flex-wrap gap-2 mb-2 justify-between">
                 {characters.map((character, i) => (
-                    i < (showMore? 99 : 6) && <div className="flex gap-2 lg:w-[300px] p-1 rounded overflow-hidden w-full flex-grow relative">
+                    i < (showMore? 99 : 6) && <div key={i} className="flex gap-2 lg:w-[300px] p-1 rounded overflow-hidden w-full flex-grow relative">
                         <img src={character.node.image.large}
                             alt={character.node.name.full} className="w-24 h-32 object-cover"/>
                         <div className="flex flex-col justify-between flex-grow p-2">

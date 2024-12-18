@@ -15,7 +15,7 @@ const DisplayMedia = ({media}:{media:media[]}) => {
     return(
         <div className="flex w-full max-w-full md:max-h-[450px] md:overflow-y-hidden gap-1 overflow-y-scroll">
             {media.map((page) => (
-                <div onClick={() => navigate(`/${page.type.toLowerCase()}/${page.id}`)} key={page.id} className="w-[140px] md:w-[250px] flex-shrink-0 p-2 rounded hover:w-[260px] duration-300">
+                <div onClick={() => navigate(`/aniwiki/${page.type.toLowerCase()}/${page.id}`)} key={page.id} className="w-[140px] md:w-[250px] flex-shrink-0 p-2 rounded hover:w-[260px] duration-300">
                     <img src={page.coverImage.extraLarge} alt={page.title.romaji} className="w-full min-h-[200px] md:min-h-[350px] md:max-h-[350px] max-h-[250px] object-cover"/>
                     <h3 className="line-clamp-2">{page.title.romaji}</h3>
                 </div>

@@ -16,7 +16,7 @@ Demonstating I can work with graphql apis (even if they can be a little annoying
 
 ## Problems I faced:
 - ### Routing:
-  At first was confusing but then I resorted to React Router (I don't want to refetch with every rerender and hyperlinks are bad for navigation)
+  Routing at first was confusing but then I resorted to React Router (I don't want to refetch with every rerender and hyperlinks are bad for navigation)
 - ### Design and Layout:
   I didn't have a layout in mind first and I was thinking that the entire project looks like a Spaghetti but then I went into dribbble and youtube to take inspiration
 - ### Colors:
@@ -27,7 +27,7 @@ Demonstating I can work with graphql apis (even if they can be a little annoying
 # Gallery
 ## Media Page
 ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot1.png?raw=true])
-## Browwsing
+## Browsing
 ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot3.png?raw=true)
 ## Searching
 ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot4.png?raw=true)

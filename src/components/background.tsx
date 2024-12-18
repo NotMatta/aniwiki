@@ -1,10 +1,10 @@
 const images = [
-    "/gallery/pic1.png",
-    "/gallery/pic3.png",
-    "/gallery/pic4.jpg",
-    "/gallery/pic5.webp",
-    "/gallery/pic6.jpg",
-    "/gallery/pic7.webp",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic1.png?raw=true",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic3.png?raw=true",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic4.jpg?raw=true",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic5.webp?raw=true",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic6.jpg?raw=true",
+    "https://github.com/NotMatta/aniwiki/blob/main/public/gallery/pic7.webp?raw=true",
 ]
 
 const Background = () => {

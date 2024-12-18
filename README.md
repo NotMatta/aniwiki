@@ -1,42 +1,44 @@
-# AniWiki
-Simply an anime & manga wiki built with react and powered by AniList API.
+## AniWiki: An Anime & Manga Delight
+
+**AniWiki** is a sleek and responsive anime & manga wiki built with React and powered by the AniList GraphQL API. 
 
 ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot2.png?raw=true)
 
-## Tech I used:
-- Vite / React
-- TailwindCSS
-- Typescript
-- React Router
-- Apollo Client
-- AniList GraphQL API (not a tech but why not)
+**Tech Stack:**
 
-## Why?
-Demonstating I can work with graphql apis (even if they can be a little annoying at first)
+* **Frontend:** Vite, React, TailwindCSS, Typescript, React Router
+* **Backend:** Apollo Client 
+* **Data Source:** AniList GraphQL API
 
-## Problems I faced:
-- ### Routing:
-  Routing at first was confusing but then I resorted to React Router (I don't want to refetch with every rerender and hyperlinks are bad for navigation)
-- ### Design and Layout:
-  I didn't have a layout in mind first and I was thinking that the entire project looks like a Spaghetti but then I went into dribbble and youtube to take inspiration
-- ### Colors:
-  I love the black and white aesthetic but with this project there are a lot of images which don't fit right with the theme of simplicity so I resorted to a dimmed changing wallpaper
-- ### Stuff:
-  If anything else I had no problems with the code since I'm used to front-end shenanigans
-- ### Routing again (gh-pages issue):
-  I had to use HashRouter instead of BrowserRouter because of gh-pages and I had to change the base url in the vite config (I hope it works now)
-- ### Weird issues with Chrome (because I'm using firefox):
-  Like some CSS properties not working or behaving differently
+**The Challenge:**
 
-# Gallery
-## Media Page
-![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot1.png?raw=true])
-## Browsing
-![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot3.png?raw=true)
-## Searching
-![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot4.png?raw=true)
-## Also made it responsive
-![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot5.png?raw=true)
+This project served as an opportunity to demonstrate my ability to work with GraphQL APIs, even if they have their initial learning curve.
 
-# Summary
-This is for portfolio purposes only (it's so dry btw).
+**Overcoming Obstacles:**
+
+* **Routing:** React Router became the hero, preventing unnecessary re-renders and promoting seamless navigation. Hyperlinks were out!
+* **Design & Layout:** Dribbble and Youtube provided inspiration to turn initial spaghetti code into a visually appealing layout.
+* **Color Scheme:** While drawn to a black & white aesthetic, the abundance of images demanded a compromise. A dynamic, dimmed wallpaper brought balance.
+
+**Conquering Quirks:**
+
+* **Deployment:** HashRouter replaced BrowserRouter to appease Github Pages, along with a base URL adjustment in the Vite config.
+* **Browser Compatibility:** Chrome's occasional CSS hiccups (remember, I'm a Firefox user!) were patiently addressed.
+
+**Gallery**
+* **Media Page**
+  ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot1.png?raw=true])
+
+* **Browsing**
+  ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot3.png?raw=true)
+
+* **Searching**
+  ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot4.png?raw=true)
+
+* **Also made it responsive**
+
+  ![](https://github.com/NotMatta/aniwiki/blob/main/public/gallery/screenshot5.png?raw=true)
+
+**The Takeaway:**
+
+This project, while initially dry for portfolio purposes, showcases my problem-solving skills and ability to build engaging user experiences.

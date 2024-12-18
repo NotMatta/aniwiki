@@ -2,14 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RoutesProvider } from './routes'
-import { BrowserRouter } from 'react-router'
+import { HashRouter } from 'react-router'
 import ApolloClientProvider from './components/apollo-provider'
 import NavBar from './components/navbar-component'
 import Background from './components/background'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <ApolloClientProvider>
                 <div className='w-full h-screen max-w-[1600px] mx-auto flex flex-col text-white'>
                     <Background/>
@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')!).render(
                     </div>
                 </div>
             </ApolloClientProvider>
-        </BrowserRouter>
+        </HashRouter>
     </StrictMode>,
 )
 

@@ -23,6 +23,10 @@ Demonstating I can work with graphql apis (even if they can be a little annoying
   I love the black and white aesthetic but with this project there are a lot of images which don't fit right with the theme of simplicity so I resorted to a dimmed changing wallpaper
 - ### Stuff:
   If anything else I had no problems with the code since I'm used to front-end shenanigans
+- ### Routing again (gh-pages issue):
+  I had to use HashRouter instead of BrowserRouter because of gh-pages and I had to change the base url in the vite config (I hope it works now)
+- ### Weird issues with Chrome (because I'm using firefox):
+  Like some CSS properties not working or behaving differently
 
 # Gallery
 ## Media Page

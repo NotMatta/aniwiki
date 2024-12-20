@@ -6,7 +6,7 @@ const MediaBrowse = ({initType}:{initType:string}) => {
     const [page,setPage] = useState({anime:(initType == "anime"),manga:(initType == "manga")}); //to prevent spam
     return(
         <div className="flex flex-col gap-2 p-4 h-full">
-            <div className="flex items-center gap-2 text-3xl">
+            <div className="flex items-center gap-2 lg:text-3xl">
                 <label htmlFor="type">Browse:</label>
                 <select name="type" id="type" className="p-2 rounded-xl bg-[rgba(0,0,0,0.5)]" value={type} onChange={(e) => {
                     if(e.target.value == "ANIME") setPage({...page,anime:true})
